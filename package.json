@@ -1,0 +1,24 @@
+{
+  "name": "node-db-sprint",
+  "version": "1.0",
+  "description": "Node sprint project for lambda",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christopherc1331/node-db4-challenge"
+  },
+  "author": "christopherc1331",
+  "homepage": "https://github.com/christopherc1331/node-db4-challenge#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.20.2",
+    "knex-cleaner": "^1.3.0",
+    "sqlite3": "^4.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  }
+}
