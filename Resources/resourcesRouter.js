@@ -22,3 +22,5 @@ router.post("/", (req, res) => {
     .then(newResource => res.status(201).json({ success: true, newResource }))
     .catch(err => res.status(401).json({ success: false, message: err }));
 });
+
+module.exports = router;

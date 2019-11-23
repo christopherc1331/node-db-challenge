@@ -21,3 +21,5 @@ router.post("/", (req, res) => {
     .then(newPost => res.status(201).json({ success: true, newPost }))
     .catch(err => res.status(401).json({ success: false, message: err }));
 });
+
+module.exports = router;
