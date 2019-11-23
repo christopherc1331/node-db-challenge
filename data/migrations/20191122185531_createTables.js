@@ -1,65 +1,81 @@
 exports.up = function(knex) {
-  return knex.schema
+  return (
+    knex.schema
 
-    .createTable("projects", tbl => {
-      tbl.increments();
+      //first table
 
-      tbl
-        .string("name", 128)
-        .unique()
-        .notNullable();
+      .createTable("projects", tbl => {
+        tbl.increments();
 
-      tbl.string("description", 128);
+        tbl
+          .string("name", 128)
+          .unique()
+          .notNullable();
 
-      tbl.boolean("completed").defaultTo(false);
-    })
+        tbl.string("description", 128);
 
-    .createTable("tasks", tbl => {
-      tbl.increments();
+        tbl.boolean("completed").defaultTo(false);
+      })
 
-      tbl
-        .string("name")
-        .unique()
-        .notNullable();
+      //second table
 
-      tbl.string("description", 128);
+      .createTable("tasks", tbl => {
+        tbl.increments();
 
-      tbl.boolean("completed").defaultTo(false);
-      tbl
-        .integer("project_id")
-        .unsigned()
-        .notNullable()
-        .references("projects.id")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
-    })
+        tbl
+          .string("name")
+          .unique()
+          .notNullable();
 
-    .createTable("resources", tbl => {
-      tbl.increments();
+        tbl.string("description", 128);
 
-      tbl
-        .string("name", 128)
-        .unique()
-        .notNullable();
+        tbl.boolean("completed").defaultTo(false);
+        tbl
+          .integer("project_id")
+          .unsigned()
+          .notNullable()
+          .references("projects.id")
+          .onUpdate("CASCADE")
+          .onDelete("CASCADE");
+      })
 
-      tbl.string("description", 128);
-    })
+      // third table
 
-    .createTable("projects_resources", tbl => {
-      tbl
-        .integer("projects_id")
-        .unsigned()
-        .notNullable()
-        .references("projects.id");
+      .createTable("resources", tbl => {
+        tbl.increments();
 
-      tbl
-        .integer("resources_id")
-        .unsigned()
-        .notNullable()
-        .references("resources.id");
+        tbl
+          .string("name", 128)
+          .unique()
+          .notNullable();
 
-      tbl.primary(["projects_id", "resources_id"]);
-    });
+        tbl.string("description", 128);
+      })
+
+      //bridge table (fourth)
+
+      .createTable("projects_resources", tbl => {
+        tbl
+          .integer("projects_id")
+          .unsigned()
+          .notNullable()
+          .references("projects.id");
+
+        tbl
+          .integer("resources_id")
+          .unsigned()
+          .notNullable()
+          .references("resources.id");
+
+        tbl.primary(["projects_id", "resources_id"]);
+      })
+  );
 };
 
-exports.down = function(knex) {};
+exports.down = function(knex) {
+  return knex.schema
+    .dropIfTableExists("projects_resources")
+    .dropIfTableExists("resources")
+    .dropIfTableExists("tasks")
+    .dropIfTableExists("projects");
+};
