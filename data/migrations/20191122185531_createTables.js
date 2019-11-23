@@ -43,6 +43,22 @@ exports.up = function(knex) {
         .notNullable();
 
       tbl.string("description", 128);
+    })
+
+    .createTable("projects_resources", tbl => {
+      tbl
+        .integer("projects_id")
+        .unsigned()
+        .notNullable()
+        .references("projects.id");
+
+      tbl
+        .integer("resources_id")
+        .unsigned()
+        .notNullable()
+        .references("resources.id");
+
+      tbl.primary(["projects_id", "resources_id"]);
     });
 };
 
