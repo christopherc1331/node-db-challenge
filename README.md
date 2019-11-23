@@ -39,12 +39,13 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
-
+      a relational is any database that consists of 2 or more tables whihch reference each other, and SQL is the language that the databases are written in
 - [ ] Why do tables need a `primary key`?
-
+      tables need a primary key so that rows can be referenced from other tables via foreign keys
 - [ ] What is the name given to a table column that references the primary key on another table.
-
+      foreign key
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+      we need a bridge table
 
 ## Minimum Viable Product
 
@@ -152,7 +153,7 @@ Add an endpoint for retrieving a `project` by its `id` that returns an object wi
     },
     {
       id: 2,
-      name: 'MacBook Pro #1'
+      name: 'MacBook Pro #1',
       description: 'an overly expensive laptop computer'
     }
   ]
