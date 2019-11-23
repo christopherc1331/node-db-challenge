@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   tasksDb
-    .get()
+    .find()
     .then(tasks => res.status(200).json({ success: true, tasks }))
     .catch(err =>
       res.status(400).json({
@@ -18,7 +18,7 @@ router.post("/", (req, res) => {
   const newTask = req.body;
 
   tasksDb
-    .post(newTask)
+    .insert(newTask)
     .then(newTask => res.status(201).json({ success: true, newTask }))
     .catch(err => res.status(401).json({ success: false, message: err }));
 });

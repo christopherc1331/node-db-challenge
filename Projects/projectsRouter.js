@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   projectsDb
-    .get()
+    .find()
     .then(projects => res.status(200).json({ success: true, projects }))
     .catch(err =>
       res
@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
   const newPost = req.body;
 
   projectsDb
-    .post(newPost)
+    .insert(newPost)
     .then(newPost => res.status(201).json({ success: true, newPost }))
     .catch(err => res.status(401).json({ success: false, message: err }));
 });
