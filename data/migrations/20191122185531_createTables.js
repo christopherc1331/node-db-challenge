@@ -14,7 +14,7 @@ exports.up = function(knex) {
 
         tbl.string("description", 128);
 
-        tbl.boolean("completed").defaultTo(0);
+        tbl.boolean("completed").defaultTo(false);
       })
 
       //second table
@@ -29,7 +29,7 @@ exports.up = function(knex) {
 
         tbl.string("description", 128);
 
-        tbl.boolean("completed").defaultTo(0);
+        tbl.boolean("completed").defaultTo(false);
         tbl
           .integer("project_id")
           .unsigned()
